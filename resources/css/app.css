@@ -1,0 +1,30 @@
+:root {
+	--brand-primary: #003b8e;
+	--brand-accent: #ffb300;
+	--brand-bg: #f4f6fb;
+}
+
+body {
+	background: radial-gradient(circle at top right, #e8eefc, #f8f9fb 38%, #f3f5f9 100%);
+}
+
+.hero-banner {
+	background: linear-gradient(135deg, var(--brand-primary) 0%, #1b4ea2 56%, #2d64c4 100%);
+}
+
+.navbar-brand {
+	color: var(--brand-primary) !important;
+	letter-spacing: 0.2px;
+}
+
+.btn-primary {
+	--bs-btn-bg: var(--brand-primary);
+	--bs-btn-border-color: var(--brand-primary);
+	--bs-btn-hover-bg: #08306f;
+	--bs-btn-hover-border-color: #08306f;
+}
+
+.btn-warning {
+	--bs-btn-bg: var(--brand-accent);
+	--bs-btn-border-color: var(--brand-accent);
+}
