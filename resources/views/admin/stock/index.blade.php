@@ -100,6 +100,7 @@
                             <th>Sucursal</th>
                             <th>Producto</th>
                             <th class="text-end">Stock</th>
+                            <th class="text-end">Ajuste rapido</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -108,10 +109,19 @@
                                 <td>{{ $entry->branch_name }}</td>
                                 <td>{{ $entry->product_name }}</td>
                                 <td class="text-end">{{ $entry->stock }}</td>
+                                <td class="text-end">
+                                    <form method="POST" action="{{ route('admin.stock.adjust') }}" class="d-inline-flex gap-2">
+                                        @csrf
+                                        <input type="hidden" name="branch_id" value="{{ $entry->branch_id }}">
+                                        <input type="hidden" name="product_id" value="{{ $entry->product_id }}">
+                                        <input type="number" min="0" name="stock" value="{{ $entry->stock }}" class="form-control form-control-sm" style="max-width: 120px;">
+                                        <button type="submit" class="btn btn-sm btn-outline-primary">Guardar</button>
+                                    </form>
+                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3" class="text-center text-muted py-3">Sin registros para estos filtros.</td>
+                                <td colspan="4" class="text-center text-muted py-3">Sin registros para estos filtros.</td>
                             </tr>
                         @endforelse
                     </tbody>

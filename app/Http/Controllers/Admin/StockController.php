@@ -101,6 +101,45 @@ class StockController extends Controller
             ->with('success', 'Movimiento registrado. Nuevo stock: ' . $newStock);
     }
 
+    public function adjust(Request $request)
+    {
+        $validated = $request->validate([
+            'branch_id' => ['required', 'integer', 'exists:branches,id'],
+            'product_id' => ['required', 'integer', 'exists:products,id'],
+            'stock' => ['required', 'integer', 'min:0'],
+        ]);
+
+        $branch = Branch::findOrFail($validated['branch_id']);
+        $product = Product::findOrFail($validated['product_id']);
+
+        $currentStock = $branch->products()
+            ->where('products.id', $product->id)
+            ->first()?->pivot->stock ?? 0;
+
+        $newStock = (int) $validated['stock'];
+        $difference = $newStock - $currentStock;
+
+        if ($difference === 0) {
+            return redirect()->route('admin.stock.index')
+                ->with('success', 'Sin cambios de stock.');
+        }
+
+        $branch->products()->syncWithoutDetaching([
+            $product->id => ['stock' => $newStock],
+        ]);
+
+        StockMovement::create([
+            'product_id' => $product->id,
+            'branch_id' => $branch->id,
+            'type' => $difference > 0 ? 'in' : 'out',
+            'quantity' => abs($difference),
+            'description' => 'Ajuste rapido de stock',
+        ]);
+
+        return redirect()->route('admin.stock.index')
+            ->with('success', 'Stock actualizado correctamente.');
+    }
+
     public function movements()
     {
         $movements = StockMovement::with(['product', 'branch'])

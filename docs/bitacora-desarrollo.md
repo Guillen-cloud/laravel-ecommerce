@@ -137,6 +137,23 @@ Agregar tabla consolidada de stock total por producto.
 
 - Stock total por producto: OK.
 
+## Sprint 2 - Incremento 5
+
+### Objetivo
+
+Agregar ajuste rapido de stock desde tabla y actualizar paleta de colores.
+
+### Cambios aplicados
+
+1. Ajuste rapido de stock por sucursal y producto.
+2. Registro automatico de movimiento en ajustes rapidos.
+3. Paleta de colores basada en tonos rojos y grises.
+
+### Estado funcional actual
+
+- Ajuste rapido de stock: OK.
+- Paleta de colores actualizada: OK.
+
 ### Archivos clave modificados
 
 - routes/web.php

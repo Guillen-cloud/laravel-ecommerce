@@ -41,5 +41,6 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
 
 	Route::get('stock', [AdminStockController::class, 'index'])->name('stock.index');
 	Route::post('stock', [AdminStockController::class, 'store'])->name('stock.store');
+	Route::post('stock/ajustar', [AdminStockController::class, 'adjust'])->name('stock.adjust');
 	Route::get('stock/movimientos', [AdminStockController::class, 'movements'])->name('stock.movements');
 });
