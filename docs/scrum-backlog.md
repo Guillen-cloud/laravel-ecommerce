@@ -36,6 +36,8 @@ Construir una tienda ecommerce Laravel inspirada en tiendas retail, con panel ad
 - [x] Paleta de colores alineada a diseno retail.
 - [x] Login y roles reales.
 - [x] Panel admin separado.
+- [x] Registro de usuarios.
+- [x] Admin de clientes y pedidos.
 
 ## Definition of Done
 

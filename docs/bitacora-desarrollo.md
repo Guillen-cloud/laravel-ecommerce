@@ -173,6 +173,24 @@ Implementar login real, roles y panel admin separado.
 - Login/logout: OK.
 - Panel admin protegido por rol: OK.
 
+## Sprint 3 - Incremento 1
+
+### Objetivo
+
+Agregar registro de usuarios y panel admin para clientes/pedidos.
+
+### Cambios aplicados
+
+1. Registro de usuarios con creacion de cliente.
+2. Modulos admin de clientes y pedidos.
+3. Actualizacion de estado de pedidos.
+4. Layout admin con enlaces a clientes y pedidos.
+
+### Estado funcional actual
+
+- Registro de usuarios: OK.
+- Admin clientes y pedidos: OK.
+
 ### Archivos clave modificados
 
 - routes/web.php

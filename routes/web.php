@@ -8,6 +8,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\StockController as AdminStockController;
+use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,11 +40,20 @@ Route::get('/checkout/exito/{order}', [CheckoutController::class, 'success'])->n
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register')->middleware('guest');
+Route::post('/register', [AuthController::class, 'register'])->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
 	Route::resource('productos', AdminProductController::class)
 		->except(['show']);
+
+	Route::get('clientes', [AdminCustomerController::class, 'index'])->name('customers.index');
+	Route::get('clientes/{customer}', [AdminCustomerController::class, 'show'])->name('customers.show');
+
+	Route::get('pedidos', [AdminOrderController::class, 'index'])->name('orders.index');
+	Route::get('pedidos/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
+	Route::put('pedidos/{order}', [AdminOrderController::class, 'update'])->name('orders.update');
 
 	Route::get('stock', [AdminStockController::class, 'index'])->name('stock.index');
 	Route::post('stock', [AdminStockController::class, 'store'])->name('stock.store');

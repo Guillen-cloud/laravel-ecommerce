@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <nav class="navbar navbar-dark" style="background:#1f1f1f;">
+    <nav class="navbar navbar-dark" style="background:#b30f0f;">
         <div class="container">
             <a class="navbar-brand fw-bold" href="{{ route('admin.productos.index') }}">Admin ElectroStore</a>
             <div class="d-flex align-items-center gap-3">
@@ -24,9 +24,11 @@
 
     <div class="container-fluid">
         <div class="row">
-            <aside class="col-lg-2 bg-light border-end min-vh-100 p-3">
+            <aside class="col-lg-2 bg-white border-end min-vh-100 p-3">
                 <div class="d-grid gap-2">
                     <a href="{{ route('admin.productos.index') }}" class="btn btn-outline-dark btn-sm">Productos</a>
+                    <a href="{{ route('admin.customers.index') }}" class="btn btn-outline-dark btn-sm">Clientes</a>
+                    <a href="{{ route('admin.orders.index') }}" class="btn btn-outline-dark btn-sm">Pedidos</a>
                     <a href="{{ route('admin.stock.index') }}" class="btn btn-outline-dark btn-sm">Stock</a>
                     <a href="{{ route('admin.stock.movements') }}" class="btn btn-outline-dark btn-sm">Movimientos</a>
                 </div>

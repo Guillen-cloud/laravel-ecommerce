@@ -51,6 +51,7 @@
                         </form>
                     @else
                         <a href="{{ route('login') }}" class="btn btn-outline-dark btn-sm">Ingresar</a>
+                        <a href="{{ route('register') }}" class="btn btn-outline-dark btn-sm">Crear cuenta</a>
                     @endif
                 </div>
             </div>
