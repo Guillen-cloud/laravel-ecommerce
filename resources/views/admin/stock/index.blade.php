@@ -123,5 +123,55 @@
             </div>
         </div>
     </div>
+
+    <div class="card border-0 shadow-sm mt-4">
+        <div class="card-body">
+            <h2 class="h6 mb-3">Stock total por producto</h2>
+            <form method="GET" class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Producto</label>
+                    <select name="summary_product_id" class="form-select">
+                        <option value="">Todos</option>
+                        @foreach($products as $product)
+                            <option value="{{ $product->id }}" @selected((string) request('summary_product_id') === (string) $product->id)>{{ $product->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-6 d-flex align-items-end">
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-outline-primary">Filtrar</button>
+                        <a href="{{ route('admin.stock.index') }}" class="btn btn-light border">Limpiar</a>
+                    </div>
+                </div>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th class="text-end">Stock total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($stockSummary as $summary)
+                            <tr>
+                                <td>{{ $summary->product_name }}</td>
+                                <td class="text-end">{{ $summary->total_stock }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="2" class="text-center text-muted py-3">Sin registros disponibles.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-3">
+                {{ $stockSummary->links() }}
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

@@ -31,6 +31,7 @@ Construir una tienda ecommerce Laravel inspirada en tiendas retail, con panel ad
 - [x] Gestion de stock por sucursal.
 - [x] Filtros de stock actual por sucursal y producto.
 - [x] Permisos admin en rutas.
+- [x] Tabla consolidada de stock por producto.
 
 ## Definition of Done
 

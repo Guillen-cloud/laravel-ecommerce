@@ -122,6 +122,21 @@ Agregar filtros de stock actual y proteger rutas admin con permisos.
 - Stock actual con filtros: OK.
 - Rutas admin protegidas por rol: OK.
 
+## Sprint 2 - Incremento 4
+
+### Objetivo
+
+Agregar tabla consolidada de stock total por producto.
+
+### Cambios aplicados
+
+1. Consulta consolidada de stock total por producto.
+2. Tabla con filtros por producto en el panel de stock.
+
+### Estado funcional actual
+
+- Stock total por producto: OK.
+
 ### Archivos clave modificados
 
 - routes/web.php

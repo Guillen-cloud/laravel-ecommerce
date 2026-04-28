@@ -16,6 +16,23 @@ class StockController extends Controller
         $branches = Branch::orderBy('name')->get();
         $products = Product::orderBy('name')->get();
 
+        $summaryQuery = DB::table('product_branch')
+            ->join('products', 'products.id', '=', 'product_branch.product_id')
+            ->select([
+                'products.id as product_id',
+                'products.name as product_name',
+                DB::raw('SUM(product_branch.stock) as total_stock'),
+            ])
+            ->groupBy('products.id', 'products.name')
+            ->orderBy('products.name');
+
+        if ($request->filled('summary_product_id')) {
+            $summaryQuery->where('products.id', $request->integer('summary_product_id'));
+        }
+
+        $stockSummary = $summaryQuery->paginate(10, ['*'], 'summary_page');
+        $stockSummary->appends($request->query());
+
         $stockQuery = DB::table('product_branch')
             ->join('products', 'products.id', '=', 'product_branch.product_id')
             ->join('branches', 'branches.id', '=', 'product_branch.branch_id')
@@ -40,7 +57,7 @@ class StockController extends Controller
         $stockEntries = $stockQuery->paginate(15);
         $stockEntries->appends($request->query());
 
-        return view('admin.stock.index', compact('branches', 'products', 'stockEntries'));
+        return view('admin.stock.index', compact('branches', 'products', 'stockEntries', 'stockSummary'));
     }
 
     public function store(Request $request)
