@@ -21,12 +21,16 @@ Construir una tienda ecommerce Laravel inspirada en tiendas retail, con panel ad
 - [x] Implementar filtros AJAX en catalogo.
 - [x] Crear vista de detalle de producto.
 - [x] Integrar base de facturacion PDF con DomPDF.
+- [x] Modulo carrito con AJAX.
+- [x] Checkout basico y creacion de orden.
+- [x] Persistencia carrito por usuario.
 
 ### Tareas siguientes
 
-- [ ] Modulo carrito (agregar/quitar/actualizar) con AJAX.
-- [ ] Persistencia carrito por usuario.
-- [ ] Checkout basico y creacion de orden.
+- [x] Panel admin CRUD productos.
+- [x] Gestion de stock por sucursal.
+- [x] Filtros de stock actual por sucursal y producto.
+- [x] Permisos admin en rutas.
 
 ## Definition of Done
 

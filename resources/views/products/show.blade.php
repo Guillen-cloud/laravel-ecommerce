@@ -44,7 +44,7 @@
             </div>
 
             <div class="mt-3 d-grid">
-                <button class="btn btn-primary" disabled>Agregar al carrito (siguiente sprint)</button>
+                <button class="btn btn-primary add-to-cart" data-product-id="{{ $product->id }}">Agregar al carrito</button>
             </div>
         </div>
     </div>
