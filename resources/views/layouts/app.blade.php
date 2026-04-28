@@ -20,12 +20,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('products.index') }}">Productos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.productos.index') }}">Admin</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.stock.index') }}">Stock</a>
-                    </li>
+                    @if(auth()->check() && auth()->user()->role && auth()->user()->role->name === 'admin')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.productos.index') }}">Admin</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.stock.index') }}">Stock</a>
+                        </li>
+                    @endif
                 </ul>
                 @php
                     if (auth()->check()) {
@@ -37,10 +39,20 @@
                         $cartCount = collect(session('cart.items', []))->sum('quantity');
                     }
                 @endphp
-                <a href="{{ route('cart.index') }}" class="btn btn-outline-primary btn-sm">
-                    Carrito
-                    <span id="cart-count" class="badge text-bg-primary ms-1">{{ $cartCount }}</span>
-                </a>
+                <div class="d-flex align-items-center gap-2">
+                    <a href="{{ route('cart.index') }}" class="btn btn-outline-primary btn-sm">
+                        Carrito
+                        <span id="cart-count" class="badge text-bg-primary ms-1">{{ $cartCount }}</span>
+                    </a>
+                    @if(auth()->check())
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-dark btn-sm">Salir</button>
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-outline-dark btn-sm">Ingresar</a>
+                    @endif
+                </div>
             </div>
         </div>
     </nav>

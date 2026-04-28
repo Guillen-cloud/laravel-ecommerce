@@ -154,6 +154,25 @@ Agregar ajuste rapido de stock desde tabla y actualizar paleta de colores.
 - Ajuste rapido de stock: OK.
 - Paleta de colores actualizada: OK.
 
+## Sprint 2 - Incremento 6
+
+### Objetivo
+
+Implementar login real, roles y panel admin separado.
+
+### Cambios aplicados
+
+1. Rutas de login y logout.
+2. Controlador de autenticacion y vista de login.
+3. Middleware admin combinado con autenticacion.
+4. Layout separado para panel admin.
+5. Usuario admin creado en seeders.
+
+### Estado funcional actual
+
+- Login/logout: OK.
+- Panel admin protegido por rol: OK.
+
 ### Archivos clave modificados
 
 - routes/web.php

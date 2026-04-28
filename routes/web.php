@@ -5,6 +5,7 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\StockController as AdminStockController;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +36,11 @@ Route::get('/checkout', [CheckoutController::class, 'create'])->name('checkout.i
 Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 Route::get('/checkout/exito/{order}', [CheckoutController::class, 'success'])->name('checkout.success');
 
-Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
 	Route::resource('productos', AdminProductController::class)
 		->except(['show']);
 

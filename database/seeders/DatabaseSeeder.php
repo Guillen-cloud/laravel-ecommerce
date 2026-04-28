@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,13 @@ class DatabaseSeeder extends Seeder
         DB::table('roles')->insert([
             ['name' => 'admin'],
             ['name' => 'customer'],
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Admin Ecommerce',
+            'email' => 'admin@ecommerce.test',
+            'password' => Hash::make('admin123'),
+            'role_id' => 1,
         ]);
 
         DB::table('payment_methods')->insert([

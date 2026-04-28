@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', $mode === 'create' ? 'Nuevo producto' : 'Editar producto')
 
